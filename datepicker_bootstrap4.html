@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ejemplo de ocultar fines de semana en gijgo datepicker</title>
+  <title>Ejemplo de ocultar fines de semana en gijgo usando datepicker</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gijgo@1.9.6/css/gijgo.min.css">
 </head>
@@ -11,7 +11,7 @@
   <div class="container mt-5">
     <div class="row">
       <div class="col-md-6">
-        <input id="datepicker" width="276" value="2023-03-14" />
+        <input id="datepicker" width="276" value="2023-03-14"/>
       </div>
     </div>
   </div>
@@ -22,9 +22,11 @@
   <script>
     $('#datepicker').datepicker({
       uiLibrary: 'bootstrap4',
+      //Idioma español
       locale: 'es-es',
       disableDates: function(date) {
         var day = date.getDay();
+        //Condición que permite ocultar los fines de semana
         if (day >= 1  && day <= 5) {
           return true;
         } else {
