@@ -37,6 +37,14 @@
             return false;
           }
         },
+        /*
+         * Desabilitando poder elejir una fecha pasada si deseo mostrar las fechas pasadas solo debo quitar esta linea
+         * minDate: new Date()
+         */
+        minDate: new Date(),
+        format: "dd/mm/yyyy",
+        showMonthAfterYear: false,
+        autoclose: true, //Cerrar la ventana apenas se seleccione la fecha automaticamente
       });
 
       /*
@@ -47,7 +55,8 @@
         let anio = fechaActual.getFullYear();
         let mes = ("0" + (fechaActual.getMonth() + 1)).slice(-2);
         let dia = ("0" + fechaActual.getDate()).slice(-2);
-        return anio + "-" + mes + "-" + dia;
+        //console.log(anio + "-" + mes + "-" + dia);
+        return `${dia}/${mes}/${anio}`;
       };
 
       /*
