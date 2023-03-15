@@ -1,39 +1,59 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ejemplo de ocultar fines de semana en gijgo usando datepicker</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gijgo@1.9.6/css/gijgo.min.css">
-</head>
-<body>
-  <div class="container mt-5">
-    <div class="row">
-      <div class="col-md-6">
-        <input id="datepicker" width="276" value="2023-03-14"/>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ejemplo de ocultar fines de semana en gijgo usando datepicker</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/gijgo@1.9.6/css/gijgo.min.css" />
+  </head>
+  <body>
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col-md-6">
+          <input id="datepicker" width="276" />
+        </div>
       </div>
     </div>
-  </div>
 
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gijgo@1.9.6/js/gijgo.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gijgo@1.9.6/js/messages/messages.es-es.js"></script>
-  <script>
-    $('#datepicker').datepicker({
-      uiLibrary: 'bootstrap4',
-      //Idioma español
-      locale: 'es-es',
-      disableDates: function(date) {
-        var day = date.getDay();
-        //Condición que permite ocultar los fines de semana
-        if (day >= 1  && day <= 5) {
-          return true;
-        } else {
-          return false;
-        }
-      }
-    });
-  </script>
-</body>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gijgo@1.9.6/js/gijgo.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gijgo@1.9.6/js/messages/messages.es-es.js"></script>
+    <script>
+      $("#datepicker").datepicker({
+        uiLibrary: "bootstrap4",
+        //Idioma español
+        locale: "es-es",
+        disableDates: function (date) {
+          var day = date.getDay();
+          //Condición que permite ocultar los fines de semana
+          if (day >= 1 && day <= 5) {
+            return true;
+          } else {
+            return false;
+          }
+        },
+      });
+
+      /*
+       * Obtener la fecha actual
+       */
+      const miFechaActual = () => {
+        let fechaActual = new Date();
+        let anio = fechaActual.getFullYear();
+        let mes = ("0" + (fechaActual.getMonth() + 1)).slice(-2);
+        let dia = ("0" + fechaActual.getDate()).slice(-2);
+        return anio + "-" + mes + "-" + dia;
+      };
+
+      /*
+       * Artificio para capturar el input id="datepicker" y cambiar el valor por defaul
+       */
+      document.querySelector("#datepicker").value = miFechaActual();
+    </script>
+  </body>
 </html>
